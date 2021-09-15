@@ -1,0 +1,415 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap')
+  
+$purple: #6F32FF
+$deep-purple: #351477
+$grey: #acb1bf
+$orange: #FF9066
+
+@mixin flex($justify-content, $align-items)
+  display: flex
+  justify-content: $justify-content
+  align-items: $align-items
+
+@mixin no-border()
+  border: none
+  outline: none
+
+body
+  overflow-y: hidden
+
+#root
+  background-color: #F4F5F8
+
+  main
+    margin-left: 230px
+    width: calc( 100% - 750px )
+    min-height: 100vh
+    padding: 60px
+
+    .skills
+      ul
+        @include flex($justify-content: flex-start, $align-items: center)
+        flex-wrap: wrap
+        list-style-type: none
+        padding: 0
+        font-weight: bold
+
+        li
+          margin: 10px 5px
+
+          a
+            padding: 5px 20px
+            border-radius: 15px
+            background-color: #fff
+            color: $orange
+            text-decoration: none
+  
+    .sidenav
+      @include flex($justify-content: space-between, $align-items: unset)
+      flex-direction: column
+      width: 230px
+      height: 100%
+      position: fixed
+      z-index: 1000
+      top: 0
+      left: 0
+      background-color: #fff 
+      box-shadow: -5px 0px 10px 0px $grey
+      overflow-y: auto
+
+      a
+        padding: 20px 35px
+        text-decoration: none
+        font-size: 16px
+        line-height: 15px
+        font-weight: bold
+        color: $grey
+        display: block
+
+        &.active
+          position: relative
+          color: #000
+          &::before
+            position: absolute
+            left: 0
+            top: 14px
+            bottom: 14px
+            content: ''
+            width: 6px
+            background-color: $purple
+            border-radius: 10px
+
+
+      .logo
+        width: 55px
+        height: 55px
+        margin: 90px 0 0 75px
+        padding: 0
+
+        &:hover        
+          background-color: unset
+          color: unset
+
+        img
+          width: 100%
+          height: 100%
+    
+      .nav-items
+        margin: 50px 0
+
+        @media screen and ( max-height: 715px )
+          margin-top: 0
+          margin-bottom: 20px
+
+    .search-section
+      display: flex
+      padding: 0 25px
+      height: 170px
+
+      .heading
+        width: 40%
+
+        h1
+          margin-top: 0
+          margin-bottom: 10px
+          font-size: 30px
+          text-transform: capitalize
+
+        p
+          margin-top: 0
+          color: $grey
+          font-weight: bold
+
+          .result-number
+            color: $deep-purple
+            font-size: 22px
+            font-family: 'Lato', sans-serif
+
+      .search
+        width: 60%
+
+        .search-bar
+          @include flex($justify-content: unset, $align-items: unset)
+          background-color: #fff
+          border-radius: 50px
+          height: fit-content
+
+          input
+            background-color: transparent
+            @include no-border
+            padding: 10px 25px
+            width: 90%
+            color: #000
+            font-weight: bold
+            font-size: 15px
+
+            &::placeholder
+              color: #B7BCC9
+
+          button
+            background-color: $orange
+            border-radius: 50px
+            @include no-border
+            padding: 15px 35px
+            cursor: pointer
+
+      .skills
+        ul
+          li:first-child
+            margin: 10px 5px
+            background-color: $orange
+            color: #fff
+            padding: 5px 20px
+            border-radius: 15px
+
+    .listings
+      margin-top: 50px
+      padding: 25px 25px 0 25px
+      height: calc(100vh - 305px)
+      overflow-y: auto
+
+      .card
+        @include flex($justify-content: space-between, $align-items: center)
+        @include no-border()
+        background-color: #fff
+        border-radius: 30px
+        padding: 35px 30px
+        margin-bottom: 25px
+        cursor: pointer
+
+        & > div
+          width: 30%
+          margin-left: 3.33333%
+
+        h3
+          margin: 0
+          text-transform: capitalize
+
+        p
+          color: $grey
+          margin: 0
+
+        .skills
+          ul
+            li
+              margin: 10px 5px 10px 0
+
+              a
+                padding: 5px 20px
+                border-radius: 15px
+                background-color: $purple
+                color: #fff
+                text-decoration: none
+
+        .profile
+          @include flex($justify-content: unset, $align-items: center)
+
+          & > .img
+            margin-right: 15px
+            margin-left: 0
+            width: 50px
+            height: 50px
+
+            img
+              width: 50px
+              height: 50px
+              border-radius: 50%
+              object-fit: cover
+
+        &.active
+          background-color: $purple
+          // filter: drop-shadow(0 0 0.75rem $purple)
+          box-shadow: -2px -2px 6px $purple, 6px 6px 6px rgba(111, 50, 255, 0.24)
+          
+          .skills
+            ul
+              li
+                a
+                  background-color: #fff
+                  color: $purple
+
+          h3
+            color: #fff
+
+      .card.people
+        .profile
+          & > .img
+            width: 70px
+            height: 70px
+
+            img
+              width: 70px
+              height: 70px
+              border-radius: 50%
+
+    .details
+      width: 400px
+      height: 100%
+      position: fixed
+      z-index: 1000
+      top: 0
+      right: 0
+      background-color: #fff
+      overflow-y: auto
+
+      .profile
+        @include flex($justify-content: unset, $align-items: center)
+        width: fit-content
+        margin: 50px auto 20px auto
+
+        .img
+          margin-right: 5px
+          width: 50px
+          height: 50px
+          background-color: transparent
+          border-radius: 50%
+
+          img
+            width: 50px
+            height: 50px
+            object-fit: cover
+
+      h1
+        margin: 0
+
+      p
+        color: $grey
+        margin: 0
+        word-break: break-word
+
+      header
+        h4
+          text-align: center
+          margin: 40px 30px
+
+      .info
+        padding: 10px 30px
+
+        h4
+          text-transform: capitalize
+
+        p
+          margin: 20px 0
+          color: #50535a
+
+      .action-btn
+        @include flex($justify-content: space-around, $align-items: center)
+        padding: 50px
+        background-color: #fff
+
+        a
+          text-decoration: none
+          text-align: center
+          padding: 8px 15px
+          width: 90px
+          border-radius: 5px
+
+        .apply-btn
+          background-color: $purple
+          color: #fff
+
+        .details-btn
+          background-color: #000
+          color: #fff
+
+      .people
+        padding: 0 30px
+
+        h2
+          margin-top: 40px
+
+        header
+          .profile
+            display: block
+            text-align: center
+
+            .img
+              margin: 15px auto
+              width: 150px
+              height: 150px
+
+              img
+                width: 150px
+                height: 150px
+                border-radius: 50%
+
+            p
+              margin-top: 10px
+
+          .links
+            text-align: center
+
+            a
+              margin: 5px
+              font-size: 23px
+
+        .skills
+          ul
+            li
+              margin: 10px 5px
+              background-color: $orange
+              color: #fff
+              padding: 5px 20px
+              border-radius: 15px
+
+              a
+                padding: 0
+                background-color: $orange
+                color: #fff
+
+        .profile.company         
+          margin: 20px 0
+
+          h4
+            margin: 10px 0
+
+.static-img
+  @include flex($justify-content: center, $align-items: center)
+  flex-direction: column
+  height: 100%
+
+  img
+    width: 70%
+
+// Loading styles and animation
+.loading
+  position: absolute
+  z-index: 9999
+  left: 0
+  right: 0
+  top: 0
+  bottom: 0
+  background-color: #ffffffa6
+
+  svg
+    width: 3.75em
+    transform-origin: center
+    animation: rotate 2s linear infinite
+    position: absolute
+    top: calc( 50% - 1.875em )
+    left: calc( 50% - 1.875em )
+
+  circle
+    fill: none
+    stroke: $purple
+    stroke-width: 4
+    stroke-dasharray: 1, 200
+    stroke-dashoffset: 0
+    stroke-linecap: round
+    animation: dash 1.5s ease-in-out infinite  
+
+  @keyframes rotate
+    100%
+      transform: rotate(360deg) 
+
+  @keyframes dash
+    0%
+      stroke-dasharray: 1, 200
+      stroke-dashoffset: 0
+    
+    50%
+      stroke-dasharray: 90, 200
+      stroke-dashoffset: -35px
+    
+    100%
+      stroke-dashoffset: -125px
