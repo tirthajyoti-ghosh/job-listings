@@ -46,7 +46,7 @@ const FindJobs = ({
   const getDetails = jobId => {
     dispatchUpdateLoadingState(true);
 
-    queryApi.get(`https://ghosh-cors-anywhere.herokuapp.com/https://torre.co/api/suite/opportunities/${jobId}`)
+    queryApi.get(`https://utility-endpoints.netlify.app/.netlify/functions/cors-proxy/https://torre.co/api/suite/opportunities/${jobId}`)
       .then(result => {
         dispatchAddJobDetails(result);
         history.push(`?query=${searchParams.query}&jobId=${jobId}`);
